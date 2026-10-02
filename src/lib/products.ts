@@ -108,6 +108,9 @@ export async function fetchProducts(
   return result.data;
 }
 
-export const ProductDraftSchema = ProductSchema.omit({ id: true });
+// รูปภาพไม่ได้เป็นช่องที่ผู้ใช้กรอกในฟอร์มเพิ่มสินค้า จึงเป็นข้อมูลเสริมของ draft
+export const ProductDraftSchema = ProductSchema.omit({ id: true, thumbnail: true }).extend({
+    thumbnail: z.string().url("กรุณากรอก URL รูปภาพให้ถูกต้อง").optional(),
+});
 
 export type ProductDraft = z.infer<typeof ProductDraftSchema>;

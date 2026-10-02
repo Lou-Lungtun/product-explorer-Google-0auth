@@ -9,7 +9,7 @@ main > h1 { order:1; position:relative; min-height:236px; margin:0; padding:64px
 main > h1::before { content:"YOUR CURATED STORE"; position:absolute; top:30px; left:57px; color:#f2d69e; font:700 10px Arial,sans-serif; letter-spacing:.2em; }
 main > h1::after { content:"✦"; position:absolute; right:7%; bottom:-46px; color:#e5bd76; font:190px Georgia,serif; opacity:.18; }
 main > button { order:2; align-self:flex-start; position:relative; z-index:1; margin:-25px 0 0 55px; min-height:50px; padding:0 24px; border:0; border-radius:999px; background:var(--gold); color:#3a3428; font-size:12px; font-weight:800; box-shadow:0 9px 18px rgba(53,45,31,.16); transition:transform .2s,box-shadow .2s,background .2s; }
-main > button:hover:not(:disabled) { transform:translateY(-2px); background:#e1bb78; box-shadow:0 12px 22px rgba(53,45,31,.2); } button:disabled { cursor:wait; opacity:.55; }
+main > button:hover:not(:disabled) { transform:translateY(-2px); background:#e1bb78; box-shadow:0 12px 22px rgba(53,45,31,.2); } button:disabled { cursor:not-allowed; opacity:.55; }
 
 /* The add-product form appears before search/results without changing the markup. */
 main > details { order:3; width:100%; margin:42px 0 0; border:1px solid rgba(218,199,166,.7); border-radius:22px; background:linear-gradient(110deg,rgba(255,254,250,.98),#f5e9d5); box-shadow:0 18px 42px rgba(52,62,72,.07); overflow:hidden; transition:box-shadow .25s; }
@@ -32,6 +32,15 @@ main > form > span[role="alert"] { display:block; color:var(--rose); font-size:1
 
 main > section { order:5; min-height:180px; margin-top:24px; } main > section > p { margin:0; padding:45px 25px; border:1px dashed #d9d3c8; border-radius:16px; color:var(--ink-soft); text-align:center; font-size:14px; } main > section > p[role="alert"] { border-color:#e0b5b0; color:var(--rose); }
 table { width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border:1px solid var(--line); border-radius:18px; background:var(--paper); box-shadow:0 15px 34px rgba(42,57,73,.055); } thead { background:linear-gradient(90deg,#f5f2eb,#f0ece3); color:#586776; } th { padding:16px 18px; font-size:10px; font-weight:800; letter-spacing:.1em; text-align:left; text-transform:uppercase; } td { padding:17px 18px; border-top:1px solid var(--line); color:#586776; font-size:13px; vertical-align:middle; } tbody tr { transition:background .2s; } tbody tr:hover { background:#fff9ef; } td:first-child { color:var(--ink); font-weight:700; } td:nth-child(2) { color:#a27635; font-weight:800; } td img { display:block; width:76px; height:62px; object-fit:cover; border-radius:11px; background:#eeeae1; box-shadow:0 4px 10px rgba(43,50,54,.08); }
+
+/* กลุ่มปุ่มจัดการสินค้า: เว้นระยะระหว่างปุ่มและแยกสีแก้ไข/ลบให้เห็นชัด */
+.product-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.product-actions button { min-height:36px; padding:0 13px; border:1px solid transparent; border-radius:9px; font-size:11px; font-weight:800; transition:transform .18s,background .18s,box-shadow .18s; }
+.product-actions .edit-button { background:#e8eef5; color:#334c68; border-color:#d5e0eb; }
+.product-actions .edit-button:hover { transform:translateY(-1px); background:#d9e5f0; box-shadow:0 5px 12px rgba(51,76,104,.12); }
+.product-actions .delete-button { background:#f8e9e6; color:#a44f48; border-color:#efd1cc; }
+.product-actions .delete-button:hover { transform:translateY(-1px); background:#f2d9d4; box-shadow:0 5px 12px rgba(164,79,72,.12); }
+.product-actions button:focus-visible { outline:3px solid rgba(213,168,93,.55); outline-offset:2px; }
 
 @media(max-width:840px) { main > form { grid-template-columns:1fr 1fr; } main > form label[for="q"],main > form input#q,main > form > button { grid-column:span 2; } }
 @media(max-width:600px) { main { width:min(100% - 28px,1160px); margin-top:20px; } main > h1 { min-height:190px; padding:53px 27px; border-radius:22px 22px 0 0; } main > h1::before { left:28px; top:25px; } main > h1::after { font-size:125px; } main > button { margin-left:27px; } main > details { margin-top:31px; border-radius:16px; } main > details summary { padding:19px 20px; font-size:21px; } main > details summary span { display:none; } main > details > div { padding:0 20px 24px; } main > form { grid-template-columns:1fr; } main > form { margin-top:39px; padding:18px; } main > form label[for="q"],main > form input#q,main > form > button { grid-column:auto; } th,td { padding:12px 10px; } th:nth-child(4),td:nth-child(4) { display:none; } td img { width:55px; height:48px; } }
