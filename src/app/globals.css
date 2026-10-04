@@ -11,6 +11,19 @@ main > h1::after { content:"✦"; position:absolute; right:7%; bottom:-46px; col
 main > button { order:2; align-self:flex-start; position:relative; z-index:1; margin:-25px 0 0 55px; min-height:50px; padding:0 24px; border:0; border-radius:999px; background:var(--gold); color:#3a3428; font-size:12px; font-weight:800; box-shadow:0 9px 18px rgba(53,45,31,.16); transition:transform .2s,box-shadow .2s,background .2s; }
 main > button:hover:not(:disabled) { transform:translateY(-2px); background:#e1bb78; box-shadow:0 12px 22px rgba(53,45,31,.2); } button:disabled { cursor:not-allowed; opacity:.55; }
 
+/* Google login controls: match the warm product page palette and keep focus visible. */
+.auth-toolbar { width:min(1160px,calc(100% - 40px)); min-height:74px; margin:18px auto -30px; display:flex; align-items:center; justify-content:flex-end; gap:14px; position:relative; z-index:2; }
+.auth-toolbar form { margin:0; }
+.auth-greeting { display:inline-flex; align-items:center; gap:9px; padding:10px 14px; border:1px solid rgba(218,199,166,.72); border-radius:999px; background:rgba(255,254,250,.86); color:var(--ink); font-size:13px; font-weight:700; box-shadow:0 5px 16px rgba(42,57,73,.05); }
+.auth-status-dot { width:8px; height:8px; border-radius:50%; background:#6d9b76; box-shadow:0 0 0 3px rgba(109,155,118,.13); }
+.auth-button { min-height:44px; display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:0 18px; border:1px solid transparent; border-radius:999px; font-size:12px; font-weight:800; letter-spacing:.01em; transition:transform .18s,box-shadow .18s,background .18s,border-color .18s; }
+.auth-login-button { border-color:#e8e1d5; background:var(--paper); color:var(--ink); box-shadow:0 8px 20px rgba(42,57,73,.09); }
+.auth-login-button:hover { transform:translateY(-2px); border-color:#d7c39e; background:#fff; box-shadow:0 11px 24px rgba(42,57,73,.14); }
+.google-mark { color:#4285f4; font:800 17px Arial,sans-serif; }
+.auth-logout-button { background:#334b64; color:#fffefa; box-shadow:0 7px 16px rgba(39,54,73,.14); }
+.auth-logout-button:hover { transform:translateY(-2px); background:#405873; box-shadow:0 10px 20px rgba(39,54,73,.2); }
+.auth-button:focus-visible { outline:3px solid rgba(213,168,93,.65); outline-offset:3px; }
+
 /* The add-product form appears before search/results without changing the markup. */
 main > details { order:3; width:100%; margin:42px 0 0; border:1px solid rgba(218,199,166,.7); border-radius:22px; background:linear-gradient(110deg,rgba(255,254,250,.98),#f5e9d5); box-shadow:0 18px 42px rgba(52,62,72,.07); overflow:hidden; transition:box-shadow .25s; }
 main > details summary { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:26px 31px; color:var(--ink); cursor:pointer; list-style:none; font:500 25px Georgia,'Times New Roman',serif; letter-spacing:-.035em; }
@@ -43,5 +56,5 @@ table { width:100%; border-collapse:separate; border-spacing:0; overflow:hidden;
 .product-actions button:focus-visible { outline:3px solid rgba(213,168,93,.55); outline-offset:2px; }
 
 @media(max-width:840px) { main > form { grid-template-columns:1fr 1fr; } main > form label[for="q"],main > form input#q,main > form > button { grid-column:span 2; } }
-@media(max-width:600px) { main { width:min(100% - 28px,1160px); margin-top:20px; } main > h1 { min-height:190px; padding:53px 27px; border-radius:22px 22px 0 0; } main > h1::before { left:28px; top:25px; } main > h1::after { font-size:125px; } main > button { margin-left:27px; } main > details { margin-top:31px; border-radius:16px; } main > details summary { padding:19px 20px; font-size:21px; } main > details summary span { display:none; } main > details > div { padding:0 20px 24px; } main > form { grid-template-columns:1fr; } main > form { margin-top:39px; padding:18px; } main > form label[for="q"],main > form input#q,main > form > button { grid-column:auto; } th,td { padding:12px 10px; } th:nth-child(4),td:nth-child(4) { display:none; } td img { width:55px; height:48px; } }
+@media(max-width:600px) { main { width:min(100% - 28px,1160px); margin-top:20px; } .auth-toolbar { width:calc(100% - 28px); min-height:64px; margin:10px auto -20px; } .auth-button { min-height:42px; padding:0 14px; } main > h1 { min-height:190px; padding:53px 27px; border-radius:22px 22px 0 0; } main > h1::before { left:28px; top:25px; } main > h1::after { font-size:125px; } main > button { margin-left:27px; } main > details { margin-top:31px; border-radius:16px; } main > details summary { padding:19px 20px; font-size:21px; } main > details summary span { display:none; } main > details > div { padding:0 20px 24px; } main > form { grid-template-columns:1fr; } main > form { margin-top:39px; padding:18px; } main > form label[for="q"],main > form input#q,main > form > button { grid-column:auto; } th,td { padding:12px 10px; } th:nth-child(4),td:nth-child(4) { display:none; } td img { width:55px; height:48px; } }
 @media(max-width:400px) { main > h1 { font-size:42px; } th:nth-child(3),td:nth-child(3) { display:none; } }

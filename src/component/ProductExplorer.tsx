@@ -21,8 +21,8 @@ export default function ProductExplorer() {
   }, []);
 
 
-  // บันทึก: ProductForm ส่ง draft ผ่าน prop onSave มายังฟังก์ชันนี้เมื่อกดส่งฟอร์ม
-  // ถ้ามี editingProduct จะ map หา id ที่ตรงกันแล้วแทนที่เฉพาะสินค้านั้น; ถ้าไม่มีจะเพิ่ม draft เป็นสินค้าใหม่
+  // บันทึก: ถ้าเป็นแก้ไข จะ map หา id เดิมแล้วแทนที่ด้วยค่าใหม่
+  // ถ้าเป็นเพิ่มใหม่ จะคัดลอกรายการเดิมทั้งหมดแล้วนำชิ้นใหม่ไปต่อท้าย
   function saveProduct(draft: ProductDraft) {
     if (editingProduct) {
       setProducts((current) => current.map((product) => product.id === editingProduct.id
@@ -39,15 +39,14 @@ export default function ProductExplorer() {
     }]);
   }
 
-  // ลบ: ปุ่มลบส่ง id ของแถวมาให้ฟังก์ชันนี้ แล้ว filter สร้าง Array ใหม่โดยไม่รวมสินค้าที่ id ตรงกัน
-  // ถ้า id นั้นเป็นสินค้าที่กำลังแก้ไข จะล้าง editingProduct เพื่อให้ ProductForm กลับเป็นโหมดเพิ่ม
+  // ลบ: ใช้ filter คัดเลือกเฉพาะสินค้าที่ id ไม่ตรงกับตัวที่เลือกเก็บไว้ ส่วนชิ้นที่ id ตรงกันจะถูกตัดออกไป
   function removeProduct(id: number) {
     setProducts((current) => current.filter((product) => product.id !== id));
     setEditingProduct((current) => current?.id === id ? null : current);
   }
 
-  // แก้ไข: ปุ่มส่ง item ทั้งแถวเข้ามา เก็บไว้ใน editingProduct แล้วเปิดแผงฟอร์ม
-  // ด้านล่างส่ง editingProduct ต่อให้ ProductForm ผ่าน prop editing เพื่อแสดงค่าเดิมของสินค้านี้
+  // แก้ไข: รับข้อมูลแถวนั้นไปเก็บใน editingProduct
+  // เพื่อเปิดแผงฟอร์มและดึงค่าเดิม (ชื่อ, ราคา ฯลฯ) มาแสดงทันที
   function editProduct(product: Product) {
     setEditingProduct(product);
     if (productFormPanel.current) productFormPanel.current.open = true;
@@ -91,6 +90,7 @@ export default function ProductExplorer() {
     <details className="add-product-panel" ref={productFormPanel}>
       <summary>{editingProduct ? "แก้ไขสินค้า" : "เพิ่มสินค้าใหม่"}<span>{editingProduct ? `กำลังแก้ไข: ${editingProduct.title}` : "กรอกข้อมูลสินค้าเพื่อเพิ่มเข้าร้าน"}</span></summary>
       {/* แก้ไข: ส่งสินค้าเข้า ProductForm ทาง prop editing; เปลี่ยน key ตาม id เพื่อสร้างฟอร์มใหม่และโหลดค่า defaultValues ของแถวนั้น */}
+      {/* ยกเลิก: callback นี้ล้าง editingProduct ใน Parent ให้ ProductForm กลับไปโหมดเพิ่มสินค้า */}
       <div><ProductForm key={editingProduct?.id ?? "new-product"} editing={editingProduct} onSave={saveProduct} onCancel={() => setEditingProduct(null)} /></div>
     </details>
   </main>;
