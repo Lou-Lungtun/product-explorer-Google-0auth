@@ -23,6 +23,7 @@ main > button:hover:not(:disabled) { transform:translateY(-2px); background:#e1b
 .auth-logout-button { background:#334b64; color:#fffefa; box-shadow:0 7px 16px rgba(39,54,73,.14); }
 .auth-logout-button:hover { transform:translateY(-2px); background:#405873; box-shadow:0 10px 20px rgba(39,54,73,.2); }
 .auth-button:focus-visible { outline:3px solid rgba(213,168,93,.65); outline-offset:3px; }
+.add-product-auth-note { order:3; width:100%; margin:42px 0 0; padding:22px 28px; border:1px solid rgba(218,199,166,.7); border-radius:18px; background:rgba(255,254,250,.86); color:var(--ink-soft); font-size:13px; text-align:center; }
 
 /* The add-product form appears before search/results without changing the markup. */
 main > details { order:3; width:100%; margin:42px 0 0; border:1px solid rgba(218,199,166,.7); border-radius:22px; background:linear-gradient(110deg,rgba(255,254,250,.98),#f5e9d5); box-shadow:0 18px 42px rgba(52,62,72,.07); overflow:hidden; transition:box-shadow .25s; }
